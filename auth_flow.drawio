@@ -1,0 +1,97 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36" version="29.2.9">
+  <diagram name="Page-1" id="o7rIBBGstT_UvCST0nqw">
+    <mxGraphModel dx="1426" dy="743" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="client_hdr" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="Client" vertex="1">
+          <mxGeometry height="40" width="260" x="40" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="server_hdr" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="Server" vertex="1">
+          <mxGeometry height="40" width="260" x="660" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="reg_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="POST /register&#xa;username, password&#xa;roles" vertex="1">
+          <mxGeometry height="80" width="260" x="40" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="reg_server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="201 Created&#xa;Hash password (bcrypt)&#xa;Store user + roles" vertex="1">
+          <mxGeometry height="80" width="260" x="660" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_reg" edge="1" parent="1" source="reg_client" style="endArrow=classic;strokeWidth=2;rounded=1;" target="reg_server" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="session_lbl" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#f5f5f5;strokeColor=#666666;" value="SESSION-BASED" vertex="1">
+          <mxGeometry height="30" width="260" x="40" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="sess_login_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="POST /login-session&#xa;{username, password}" vertex="1">
+          <mxGeometry height="80" width="260" x="40" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="sess_login_server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="Create session cookie&#xa;Generate CSRF token&#xa;Return csrf_token" vertex="1">
+          <mxGeometry height="100" width="260" x="660" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_sess_login" edge="1" parent="1" source="sess_login_client" style="endArrow=classic;strokeWidth=2;rounded=1;" target="sess_login_server" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sess_me_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="GET /me-session" vertex="1">
+          <mxGeometry height="60" width="260" x="40" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="sess_me_server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="{username, roles}&#xa;Validate session cookie" vertex="1">
+          <mxGeometry height="80" width="260" x="660" y="390" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_sess_me" edge="1" parent="1" source="sess_me_client" style="endArrow=classic;strokeWidth=2;rounded=1;" target="sess_me_server" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="sess_logout_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="POST /logout-session&#xa;Header: X-CSRF-Token" vertex="1">
+          <mxGeometry height="80" width="260" x="40" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="sess_logout_server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="Validate session + CSRF&#xa;Clear session&#xa;{message: Logged out}" vertex="1">
+          <mxGeometry height="100" width="260" x="660" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_sess_logout" edge="1" parent="1" source="sess_logout_client" style="endArrow=classic;strokeWidth=2;rounded=1;" target="sess_logout_server" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_lbl" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#f5f5f5;strokeColor=#666666;" value="JWT-BASED" vertex="1">
+          <mxGeometry height="30" width="260" x="40" y="620" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_login_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="POST /login-jwt&#xa;{username, password}" vertex="1">
+          <mxGeometry height="80" width="260" x="40" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_login_server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="Issue access_token (short)&#xa;Issue refresh_token (long)&#xa;expires_in" vertex="1">
+          <mxGeometry height="100" width="260" x="660" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_jwt_login" edge="1" parent="1" source="jwt_login_client" style="endArrow=classic;strokeWidth=2;rounded=1;" target="jwt_login_server" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_prot_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="GET /protected&#xa;Authorization: Bearer access_token" vertex="1">
+          <mxGeometry height="100" width="260" x="40" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_prot_server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="{message: Access granted}&#xa;Validate type=access, expiry" vertex="1">
+          <mxGeometry height="100" width="260" x="660" y="780" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_jwt_prot" edge="1" parent="1" source="jwt_prot_client" style="endArrow=classic;strokeWidth=2;rounded=1;" target="jwt_prot_server" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_admin_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="GET /admin&#xa;Authorization: Bearer access_token" vertex="1">
+          <mxGeometry height="100" width="260" x="40" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_admin_server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="{message: Admin access granted}&#xa;Validate roles contains &quot;admin&quot;" vertex="1">
+          <mxGeometry height="120" width="260" x="660" y="900" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_jwt_admin" edge="1" parent="1" source="jwt_admin_client" style="endArrow=classic;strokeWidth=2;rounded=1;" target="jwt_admin_server" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_refresh_client" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="POST /refresh-jwt&#xa;{refresh_token}" vertex="1">
+          <mxGeometry height="80" width="260" x="40" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="jwt_refresh_server" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#FFFFFF;strokeColor=#000000;shadow=0;" value="Validate refresh&#xa;Rotate refresh (revoke old)&#xa;Return new access + refresh" vertex="1">
+          <mxGeometry height="120" width="260" x="660" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_jwt_refresh" edge="1" parent="1" source="jwt_refresh_client" style="endArrow=classic;strokeWidth=2;rounded=1;" target="jwt_refresh_server" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="footer" parent="1" style="rounded=1;whiteSpace=wrap;html=1;strokeWidth=2;fillColor=#f5f5f5;strokeColor=#666666;" value="Authorization Check&#xa;Session: roles in session&#xa;JWT: roles in token claims" vertex="1">
+          <mxGeometry height="90" width="880" x="40" y="1170" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
